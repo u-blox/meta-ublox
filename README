@@ -2,6 +2,13 @@ meta-ublox
 ==========
 OpenEmbedded/Yocto BSP layer for u-blox platforms
 
+Dependencies
+------------
+This layer depends on:
+
+URI: git://git.openembedded.org/meta-openembedded
+subdirectory: meta-networking	(crda)
+
 License
 -------
 All metadata is MIT licensed unless otherwise stated. Source code
