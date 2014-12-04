@@ -1,0 +1,97 @@
+#!/bin/bash
+#
+# Copyright (C) 2014 u-blox AG
+# description: ELIN-W16 radio parameter utility script
+
+# Get function from functions library
+. /etc/init.d/functions
+
+NVS_TMP_FILE=/tmp/new-nvs.bin
+WL_NVS_FILE=/lib/firmware/ti-connectivity/wl1273-nvs.bin
+EEPROM_PATH=/sys/bus/i2c/devices/0-0051/eeprom
+EEPROM_READER=elin-eeprom
+
+log_result() {
+	logger -p $1 -s $2
+}
+
+update_nvs() {
+	$EEPROM_READER -d $EEPROM_PATH -n $NVS_TMP_FILE
+	if [ $? -eq 0 ]; then
+		cp $NVS_TMP_FILE $WL_NVS_FILE
+		cd /lib/firmware/ti-connectivity
+		ln -sf $WL_NVS_FILE wl12xx-nvs.bin
+		ln -sf $WL_NVS_FILE wl127x-nvs.bin
+		ln -sf $WL_NVS_FILE wl1271-nvs.bin
+		log_result "user.notice" "Radio parameters updated successfully"
+		return 1
+	else
+		log_result "user.err" "Radio parameters update failed"
+		return 0
+	fi
+}
+
+check_nvs() {
+	if [ -f $EEPROM_PATH ]; then
+		NVS_MD5=`$EEPROM_READER -d $EEPROM_PATH -n /dev/stdout | md5sum | awk '{print $1}'`
+		if [ $? -ne 0 ]; then
+			log_result "user.err" "Failed to retrieve radio parameters from EEPROM"
+			exit 1
+		fi
+	else
+			log_result "user.err" "Radio parameter EEPROM could not be found"
+			exit 1
+	fi
+
+	if [ -f $WL_NVS_FILE ]; then
+		FLASH_NVS_MD5=`md5sum $WL_NVS_FILE | awk '{print $1}'`
+	else
+		FLASH_NVS_MD5="NO_NVS_FILE"
+	fi
+
+	if [ $NVS_MD5 = $FLASH_NVS_MD5 ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+verify_nvs() {
+	check_nvs
+	if [[ $? -eq 0 ]]; then
+		log_result "user.info" "Radio parameters are up to date"
+	else
+		log_result "user.critical" "Radio parameters are different from eeprom settings. Parameters should be updated and system rebooted to ensure WLAN is operating with proper settings."
+	fi
+}
+
+# Verify radio parameters and if stale update them
+start() {
+	check_nvs
+	if [[ $? -ne 0 ]]; then
+		update_nvs
+		if [[ $? -eq 0 ]]; then
+			log_result "user.alert" "NVS files are updated please reboot device."
+		fi
+	fi
+}
+
+### main logic ###
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		;;
+	status)
+		verify_nvs
+		;;
+	restart|reload|condrestart)
+		start
+		;;
+	*)
+		echo $"Usage: $0 {start|stop|restart|reload|status}"
+		exit 1
+esac
+
+exit 0
