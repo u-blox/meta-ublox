@@ -25,6 +25,6 @@ USE_VT = "0"
 
 MACHINE_FEATURES = "bluetooth wifi"
 
-MACHINE_EXTRA_RRECOMMENDS = "crda ublox-srr-firmware"
+MACHINE_EXTRA_RRECOMMENDS = "crda ublox-srr-firmware elin-eeprom-reader"
 
 EXTRA_IMAGEDEPENDS += "virtual/bootloader"
