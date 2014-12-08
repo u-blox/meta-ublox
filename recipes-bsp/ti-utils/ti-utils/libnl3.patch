@@ -1,0 +1,16 @@
+diff --git a/Makefile b/Makefile
+index 5193b6d..3dc44c5 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,9 +1,9 @@
+ CC = $(CROSS_COMPILE)gcc
+ CFLAGS = -O2 -Wall
+-CFLAGS += -DCONFIG_LIBNL20 -I$(NFSROOT)/usr/include -I$(NFSROOT)/include
++CFLAGS += -DCONFIG_LIBNL20 -I$(NFSROOT)/usr/include -I$(NFSROOT)/include -I$(NFSROOT)/usr/include/libnl3 -Wno-unused-result
+
+ LDFLAGS += -L$(NFSROOT)/lib
+-LIBS += -lnl -lnl-genl -lm
++LIBS += -lnl-3 -lnl-genl-3 -lm
+
+ OBJS = nvs.o misc_cmds.o calibrator.o plt.o ini.o
+
