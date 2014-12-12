@@ -25,6 +25,6 @@ USE_VT = "0"
 
 MACHINE_FEATURES = "bluetooth wifi"
 
-MACHINE_EXTRA_RRECOMMENDS = "crda linux-firmware-wl12xx ti-bt-firmware"
+MACHINE_EXTRA_RRECOMMENDS = "crda ublox-srr-firmware"
 
 EXTRA_IMAGEDEPENDS += "virtual/bootloader"
