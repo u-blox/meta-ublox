@@ -2,4 +2,4 @@ require linux-ublox.inc
 
 LINUX_VERSION = "3.17"
 
-SRCREV = "cb1bb83637ecb35bc6b29fa0f0e6f62f0b295578"
+SRCREV = "5c8e22557096332d411b7760389eba46e5550696"
