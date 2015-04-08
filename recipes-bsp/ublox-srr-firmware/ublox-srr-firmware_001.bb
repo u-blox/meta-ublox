@@ -5,11 +5,11 @@ DESCRIPTION = "u-blox ODIN-W16 firmware"
 HOMEPAGE = "http://www.u-blox.com/en/bluetooth-wifi-multiradio-modules/multiradio-wi-fi-bluetooth-modules/odin-w160-wi-fi-bluetooth-module.html"
 LICENSE = "TI Limited Licence"
 SECTION = "network/misc"
-PR = "r0+gitr${SRCPV}"
+PR = "r1+gitr${SRCPV}"
 
 LIC_FILES_CHKSUM = "file://odin-w16/LICENCE;md5=1c9961176d6529283e0d0c983be41b45"
 
-SRCREV = "28c8205a5c9f804e586a734f8c8a4a9e05c4c81c"
+SRCREV = "19694957701e9e2efb51b1686047db61ac23632c"
 SRC_URI = "git://${UBLOX_GIT}/ublox-srr-firmware.git;protocol=${UBLOX_GIT_PROTOCOL}"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
