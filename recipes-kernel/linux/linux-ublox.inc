@@ -12,7 +12,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 S = "${WORKDIR}/git"
 
 SRC_URI = " \
-    git://${UBLOX_GIT}/linux.git;protocol=${UBLOX_GIT_PROTOCOL};nobranch=1 \
+    git://${UBLOX_GIT}/linux.git;protocol=${UBLOX_GIT_PROTOCOL};branch=elin-3.17.8 \
     file://defconfig \
     "
 
