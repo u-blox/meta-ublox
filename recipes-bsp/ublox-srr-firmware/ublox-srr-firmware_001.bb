@@ -3,7 +3,7 @@
 
 DESCRIPTION = "u-blox ODIN-W16 firmware"
 HOMEPAGE = "http://www.u-blox.com/en/bluetooth-wifi-multiradio-modules/multiradio-wi-fi-bluetooth-modules/odin-w160-wi-fi-bluetooth-module.html"
-LICENSE = "TI Limited Licence"
+LICENSE = "TI-Limited"
 SECTION = "network/misc"
 PR = "r1+gitr${SRCPV}"
 
