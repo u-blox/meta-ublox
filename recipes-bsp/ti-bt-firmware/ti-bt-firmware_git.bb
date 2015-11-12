@@ -11,7 +11,7 @@ LIC_FILES_CHKSUM = " \
     file://am335x/LICENCE;md5=1c9961176d6529283e0d0c983be41b45 \
     "
 
-SRCREV = "2b10c6ebd7c08d849a92e3e993cec0ebac38c7c6"
+SRCREV = "169b2df5b968f0ede32ea9044859942fc220c435"
 SRC_URI = "git://github.com/TI-ECS/bt-firmware.git;protocol=git"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
