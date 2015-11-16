@@ -9,7 +9,7 @@ PR = "r1+gitr${SRCPV}"
 
 LIC_FILES_CHKSUM = "file://odin-w16/LICENCE;md5=1c9961176d6529283e0d0c983be41b45"
 
-SRCREV = "d979040e0acbe6fc168be35804c9314ae35c7198"
+SRCREV = "85978b7e40b6edb4c6333c65c3a85ec1b5b987bb"
 SRC_URI = "git://${UBLOX_GIT}/ublox-srr-firmware.git;protocol=${UBLOX_GIT_PROTOCOL}"
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
