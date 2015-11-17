@@ -1,7 +1,10 @@
 DESCRIPTION = "ELIN-W16 EEPROM reader"
 LICENSE = "CLOSED"
 SECTION = "ublox/util"
-PR = "r0"
+
+RDEPENDS_${PN} += "bash"
+
+S = "${WORKDIR}"
 
 # Must be run before networking starts as wlan driver requires nvs file
 INITSCRIPT_NAME = "elin-w16-radio-params"
